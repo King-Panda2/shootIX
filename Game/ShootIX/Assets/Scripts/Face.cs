@@ -4,36 +4,16 @@ using System.Collections.Generic;
 public class Face : MonoBehaviour
 {
     // Lists of pieces, organized into rows and columns
-    [SerializeField] private List<Piece> firstRow;
-    [SerializeField] private List<Piece> secondRow;
-    [SerializeField] private List<Piece> thirdRow;
-    [SerializeField] private List<Piece> firstColumn;
-    [SerializeField] private List<Piece> secondColumn;
-    [SerializeField] private List<Piece> thirdColumn;
+    public List<Piece> firstRow;
+    public List<Piece> secondRow;
+    public List<Piece> thirdRow;
+    public List<Piece> firstColumn;
+    public List<Piece> secondColumn;
+    public List<Piece> thirdColumn;
 
     // Relation to other faces
-    [SerializeField] private Face faceToRight;
-    [SerializeField] private Face faceToLeft;
-    [SerializeField] private Face faceToTop;
-    [SerializeField] private Face faceToBottom;
-
-    public void RotateRight()
-    {
-
-    }
-    
-    public void RotateLeft()
-    {
-
-    }
-
-    public void RotateUp()
-    {
-
-    }
-
-    public void RotateDown()
-    {
-
-    }
+    public Face faceToRight;
+    public Face faceToLeft;
+    public Face faceToTop;
+    public Face faceToBottom;
 }

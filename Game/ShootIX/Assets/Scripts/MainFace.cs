@@ -24,4 +24,9 @@ public class MainFace : MonoBehaviour
     {
         face = gameObject.GetComponent<Face>();
     }
+
+    public Face GetFace()
+    {
+        return face;
+    }
 }

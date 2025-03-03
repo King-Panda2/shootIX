@@ -162,6 +162,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button8
       objectReference: {fileID: 0}
+    - target: {fileID: 8260420184592505743, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
+      propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260420184592505743, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
+      propertyPath: rowColumn
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -231,6 +239,14 @@ PrefabInstance:
     - target: {fileID: 2287786882865786250, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
       propertyPath: m_Name
       value: Button10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260420184592505743, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
+      propertyPath: direction
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260420184592505743, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
+      propertyPath: rowColumn
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -555,6 +571,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button11
       objectReference: {fileID: 0}
+    - target: {fileID: 8260420184592505743, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
+      propertyPath: direction
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260420184592505743, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
+      propertyPath: rowColumn
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -624,6 +648,14 @@ PrefabInstance:
     - target: {fileID: 2287786882865786250, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
       propertyPath: m_Name
       value: Button5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260420184592505743, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
+      propertyPath: direction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260420184592505743, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
+      propertyPath: rowColumn
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -850,7 +882,7 @@ PrefabInstance:
     - target: {fileID: 8290945034976108847, guid: 56cdff7d1500e9949a993f45b0b25707, type: 3}
       propertyPath: faceToTop
       value: 
-      objectReference: {fileID: 2988819975588864122}
+      objectReference: {fileID: 1583444613681852609}
     - target: {fileID: 8290945034976108847, guid: 56cdff7d1500e9949a993f45b0b25707, type: 3}
       propertyPath: faceToLeft
       value: 
@@ -862,7 +894,7 @@ PrefabInstance:
     - target: {fileID: 8290945034976108847, guid: 56cdff7d1500e9949a993f45b0b25707, type: 3}
       propertyPath: faceToBottom
       value: 
-      objectReference: {fileID: 1583444613681852609}
+      objectReference: {fileID: 2988819975588864122}
     - target: {fileID: 8298576075460299517, guid: 56cdff7d1500e9949a993f45b0b25707, type: 3}
       propertyPath: m_Name
       value: Piece5-9
@@ -964,6 +996,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button2
       objectReference: {fileID: 0}
+    - target: {fileID: 8260420184592505743, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
+      propertyPath: rowColumn
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1033,6 +1069,14 @@ PrefabInstance:
     - target: {fileID: 2287786882865786250, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
       propertyPath: m_Name
       value: Button7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260420184592505743, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
+      propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260420184592505743, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
+      propertyPath: rowColumn
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1259,7 +1303,7 @@ PrefabInstance:
     - target: {fileID: 8290945034976108847, guid: 56cdff7d1500e9949a993f45b0b25707, type: 3}
       propertyPath: faceToTop
       value: 
-      objectReference: {fileID: 1583444613681852609}
+      objectReference: {fileID: 4650604301060265743}
     - target: {fileID: 8290945034976108847, guid: 56cdff7d1500e9949a993f45b0b25707, type: 3}
       propertyPath: faceToLeft
       value: 
@@ -1372,6 +1416,14 @@ PrefabInstance:
     - target: {fileID: 2287786882865786250, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
       propertyPath: m_Name
       value: Button6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260420184592505743, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
+      propertyPath: direction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260420184592505743, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
+      propertyPath: rowColumn
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1578,7 +1630,7 @@ PrefabInstance:
     - target: {fileID: 8290945034976108847, guid: 56cdff7d1500e9949a993f45b0b25707, type: 3}
       propertyPath: faceToBottom
       value: 
-      objectReference: {fileID: 2988819975588864122}
+      objectReference: {fileID: 4650604301060265743}
     - target: {fileID: 8298576075460299517, guid: 56cdff7d1500e9949a993f45b0b25707, type: 3}
       propertyPath: m_Name
       value: Piece6-9
@@ -1945,6 +1997,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button3
       objectReference: {fileID: 0}
+    - target: {fileID: 8260420184592505743, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
+      propertyPath: rowColumn
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2015,6 +2071,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button12
       objectReference: {fileID: 0}
+    - target: {fileID: 8260420184592505743, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
+      propertyPath: direction
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2084,6 +2144,14 @@ PrefabInstance:
     - target: {fileID: 2287786882865786250, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
       propertyPath: m_Name
       value: Button9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260420184592505743, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
+      propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260420184592505743, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
+      propertyPath: rowColumn
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2424,6 +2492,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button1
       objectReference: {fileID: 0}
+    - target: {fileID: 8260420184592505743, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
+      propertyPath: rowColumn
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2493,6 +2565,10 @@ PrefabInstance:
     - target: {fileID: 2287786882865786250, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
       propertyPath: m_Name
       value: Button4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260420184592505743, guid: c2933b1c192d2864eb24d2e5c33f4961, type: 3}
+      propertyPath: direction
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
