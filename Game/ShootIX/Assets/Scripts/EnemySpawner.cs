@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
     // Define the allowed colors for enemies
     private Color[] allowedColors = new Color[]
     {
-        Color.white,
+        new Color(0.5f, 0f, 1f), // Purple (RGB: 0.5, 0, 1)
         Color.red,
         Color.blue,
         new Color(1f, 0.5f, 0f), // Orange (RGB: 1, 0.5, 0)

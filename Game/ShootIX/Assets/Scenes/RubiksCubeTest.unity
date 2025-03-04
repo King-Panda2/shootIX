@@ -359,6 +359,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3694254942527107398, guid: 4fae3182c97cb4ccca1825ea2350e16a, type: 3}
   maxBullets: 4
   spawnOffset: 1.5
+  cam: {fileID: 88988555}
 --- !u!1001 &7220516906786186896
 PrefabInstance:
   m_ObjectHideFlags: 0

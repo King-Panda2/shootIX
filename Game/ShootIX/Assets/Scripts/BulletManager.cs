@@ -21,6 +21,20 @@ public class BulletManager : MonoBehaviour
         }
         SetActiveBullet();
     }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            // If the player's mouse is on the left side of the screen
+            if (Input.mousePosition.x < Screen.width / 2.0f)
+            {
+                activeBullet.Shoot();
+
+                OnBulletFired();
+            }
+        }
+    }
     
     private void CreateBullet()
     {
@@ -46,23 +60,16 @@ public class BulletManager : MonoBehaviour
         activeBullet.transform.position += new Vector3(0.0f, 0.5f, 0.0f);
     }
 
-    private void ShootBullet()
-    {
-        activeBullet.Shoot();
-        
-        OnBulletFired();
-    }
-
     private void OnBulletFired()
     {
+        // Remove current active bullet
+        currentBullets.Remove(activeBullet);
+        
         // Shift all bullets up the queue
         for (int i = 0; i < currentBullets.Count; i++)
         {
             currentBullets[i].gameObject.transform.position -= new Vector3(spawnOffset, 0.0f, 0.0f);
         }
-
-        // Remove current active bullet
-        currentBullets.Remove(activeBullet);
         
         // Set next active bullet
         if (currentBullets.Count >= 1)
