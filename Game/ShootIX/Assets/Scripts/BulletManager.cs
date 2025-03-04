@@ -29,7 +29,10 @@ public class BulletManager : MonoBehaviour
             // If the player's mouse is on the left side of the screen
             if (Input.mousePosition.x < Screen.width / 2.0f)
             {
-                activeBullet.Shoot();
+                if (activeBullet)
+                {
+                    activeBullet.Shoot();
+                }
 
                 OnBulletFired();
             }

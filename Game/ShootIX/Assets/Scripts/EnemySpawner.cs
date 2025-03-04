@@ -18,7 +18,7 @@ public class EnemySpawner : MonoBehaviour
         Color.blue,
         new Color(1f, 0.5f, 0f), // Orange (RGB: 1, 0.5, 0)
         Color.green,
-        Color.yellow
+        new Color(1f, 0.92f, 0.016f) // Yellow (RGB: (1, 0.92, 0.016)
     };
 
     private Dictionary<Transform, Color> spawnPointColors = new Dictionary<Transform, Color>(); // Map spawn points to specific colors

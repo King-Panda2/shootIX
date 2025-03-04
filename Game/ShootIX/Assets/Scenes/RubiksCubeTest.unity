@@ -316,14 +316,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d1667f1846b41a09108718f5d3d53e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRound: 1
   enemiesPerRound: 5
-  enemiesRemaining: 0
+  timeBetweenRounds: 1
   enemiesLeftText: {fileID: 1510780840}
   roundCounterText: {fileID: 668273601}
-  _winScreen: {fileID: 0}
-  _winSound: {fileID: 0}
-  _bkrdMusic: {fileID: 0}
 --- !u!4 &601249319
 Transform:
   m_ObjectHideFlags: 0
@@ -833,8 +829,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3312461512355007254, guid: 99bded473c45c43beaadc4e7fb44e110, type: 3}
-  minimumSpawnTime: 1
-  maximumSpawnTime: 2
+  minimumSpawnTime: 1.5
+  maximumSpawnTime: 3
   spawnPoints:
   - {fileID: 1715174345}
   - {fileID: 515690991}

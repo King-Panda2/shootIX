@@ -37,14 +37,17 @@ public class Enemy : MonoBehaviour
         Bullet bullet = collision.GetComponent<Bullet>();
         if (bullet != null)
         {
-            if (bullet.BulletColor == EnemyColor)
+            if (bullet.GetIsShooting())
             {
-                // If the bullet color matches the enemy color, destroy the enemy
-                UpdateHealth(-health); // Reduce health to 0
-            }
+                if (bullet.BulletColor == EnemyColor)
+                {
+                    // If the bullet color matches the enemy color, destroy the enemy
+                    UpdateHealth(-health); // Reduce health to 0
+                }
 
-            // Destroy the bullet
-            bullet.CollideAndDestroy();
+                // Destroy the bullet
+                bullet.CollideAndDestroy();
+            }
         }
     }
 }

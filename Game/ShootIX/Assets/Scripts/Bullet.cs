@@ -36,5 +36,10 @@ public class Bullet : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    public bool GetIsShooting()
+    {
+        return isShooting;
+    }
 }
 

@@ -1,24 +1,24 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance; // Singleton for easy access
-    public int currentRound = 1; // Current round number
-    public int enemiesPerRound = 5; // Base number of enemies per round
-    public int enemiesRemaining; // Number of enemies left in the current round
+    
+    private int currentRound = 1; // Current round number
+    [SerializeField] private int enemiesPerRound = 5; // Base number of enemies per round
+    private int enemiesRemaining; // Number of enemies left in the current round
+    [SerializeField] private float timeBetweenRounds = 1f;
 
     private EnemySpawner enemySpawner;
     [SerializeField] private TextMeshProUGUI enemiesLeftText;
     [SerializeField] private TextMeshProUGUI roundCounterText;
 
-    [SerializeField] private GameObject _winScreen;
-    [SerializeField] private GameObject _winSound;
-    [SerializeField] private GameObject _bkrdMusic;
-
-    private void Awake()
+    void Awake()
     {
         if (Instance == null)
         {
@@ -31,26 +31,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    void Start()
     {
         enemySpawner = FindAnyObjectByType<EnemySpawner>();
         StartRound(); // Start the first round
     }
 
-    // Start a new round
-    public void StartRound()
+    void Update()
     {
-        //turn off the shop UI
-        // Calculate the number of enemies for this round
-        int enemyCount = Mathf.CeilToInt(enemiesPerRound * currentRound );
-        enemiesRemaining = enemyCount;
+        // reset button
+        if (Input.GetKey(KeyCode.R))
+        {
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentSceneName);
+        }
 
-        // Spawn enemies
-        enemySpawner.SpawnEnemies(enemyCount);
-
-        // Update UI or other systems
-        UpdateEnemiesLeftText();
-        UpdateRoundText();
+        // quit button
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
     }
 
     private void OnEnable()
@@ -61,6 +61,21 @@ public class GameManager : MonoBehaviour
     private void OnDisable()
     {
         Enemy.OnEnemyKilled -= OnEnemyKilled;
+    }
+
+    // Start a new round
+    public void StartRound()
+    {
+        // Calculate the number of enemies for this round
+        int enemyCount = Mathf.CeilToInt(enemiesPerRound * currentRound);
+        enemiesRemaining = enemyCount;
+
+        // Spawn enemies
+        enemySpawner.SpawnEnemies(enemyCount);
+
+        // Update UI or other systems
+        UpdateEnemiesLeftText();
+        UpdateRoundText();
     }
 
     // Called when an enemy is defeated
@@ -74,11 +89,20 @@ public class GameManager : MonoBehaviour
         // Check if all enemies are defeated
         if (enemiesRemaining <= 0)
         {
-           // EndRound();
+           StartCoroutine(EndRound());
         }
     }
 
     // End the current round and start the next one
+    private IEnumerator EndRound()
+    {
+        currentRound++; // Increment the round number
+
+        yield return new WaitForSeconds(timeBetweenRounds); // Wait between rounds
+
+        StartRound();
+    }
+
     /*
     private void EndRound()
     {
