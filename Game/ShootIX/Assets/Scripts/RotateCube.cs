@@ -32,7 +32,7 @@ public class RotateCube : MonoBehaviour
         List<Color> initialColors = new List<Color>();
         for (int i = 0; i < 3; i++)
         {
-            initialColors.Add(GetCurrentPieces(currentFace)[i].GetColor());
+            initialColors.Add(GetPiecesFromRowOrColumn(currentFace)[i].GetColor());
         }
 
         // Rotate the cube
@@ -57,15 +57,18 @@ public class RotateCube : MonoBehaviour
             }
             
             //Debug.Log("Current Face: " + currentFace + ", Next Face: " + nextFace);
-            Rotate(currentFace, GetCurrentPieces(nextFace));
+            Rotate(currentFace, GetPiecesFromRowOrColumn(nextFace));
             currentFace = nextFace;
         }
         Rotate(currentFace, initialColors);
+
+        // Update bullet weights based on the new MainFace state
+        MainFace.Instance.CalculateBulletWeights();
     }
 
     private void Rotate(Face firstFace, List<Piece> nextFacePieces)
     {
-        List<Piece> firstFacePieces = GetCurrentPieces(firstFace);
+        List<Piece> firstFacePieces = GetPiecesFromRowOrColumn(firstFace);
 
         for (int i = 0; i < 3; i++)
         {
@@ -75,7 +78,7 @@ public class RotateCube : MonoBehaviour
 
     private void Rotate(Face firstFace, List<Color> nextFaceColors)
     {
-        List<Piece> firstFacePieces = GetCurrentPieces(firstFace);
+        List<Piece> firstFacePieces = GetPiecesFromRowOrColumn(firstFace);
 
         for (int i = 0; i < 3; i++)
         {
@@ -83,7 +86,7 @@ public class RotateCube : MonoBehaviour
         }
     }
 
-    private List<Piece> GetCurrentPieces(Face face)
+    private List<Piece> GetPiecesFromRowOrColumn(Face face)
     {
         switch (rowColumn)
         {

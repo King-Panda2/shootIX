@@ -1,9 +1,17 @@
 using UnityEngine;
 
-
 public class Bullet : MonoBehaviour
 {
     public Color BulletColor { get; set; } // Color of the bullet
+    private bool isShooting = false;
+
+    void Update()
+    {
+        if (isShooting)
+        {
+            // TO DO: move
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,5 +24,9 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    public void Shoot()
+    {
+        isShooting = true;
+    }
 }
 

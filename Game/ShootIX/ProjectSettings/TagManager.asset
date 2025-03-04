@@ -41,8 +41,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1047934825
+    locked: 0
   - name: Cube
     uniqueID: 1854133827
+    locked: 0
+  - name: Enemy
+    uniqueID: 333351365
+    locked: 0
+  - name: GunBullet
+    uniqueID: 621105393
     locked: 0
   m_RenderingLayers:
   - Default

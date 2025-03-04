@@ -7,7 +7,7 @@ public class Piece : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
-    void Start()
+    void Awake()
     {
         face = transform.parent.gameObject.GetComponent<Face>();
 
