@@ -17,17 +17,6 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    /*private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // Check if the collided object is an enemy
-        Enemy enemy = collision.GetComponent<Enemy>();
-        if (enemy != null && enemy.EnemyColor == BulletColor)
-        {
-            // If the bullet color matches the enemy color, destroy the bullet
-            Destroy(gameObject);
-        }
-    }*/
-
     void OnBecameInvisible()
     {
         // Self-destruct when out of range
@@ -41,6 +30,11 @@ public class Bullet : MonoBehaviour
         direction = new Vector3(direction.x, direction.y, 0.0f);
         
         isShooting = true;
+    }
+
+    public void CollideAndDestroy()
+    {
+        Destroy(gameObject);
     }
 }
 

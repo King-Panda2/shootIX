@@ -11,26 +11,12 @@ public class GameManager : MonoBehaviour
     public int enemiesRemaining; // Number of enemies left in the current round
 
     private EnemySpawner enemySpawner;
-    [SerializeField] TextMeshProUGUI enemiesLeftText;
-    [SerializeField] TextMeshProUGUI roundCounter;
+    [SerializeField] private TextMeshProUGUI enemiesLeftText;
+    [SerializeField] private TextMeshProUGUI roundCounterText;
 
-    [SerializeField] GameObject _winScreen;
-    [SerializeField] GameObject _winSound;
-    [SerializeField] GameObject _bkrdMusic;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
-
-    void UpdateEnemiesLeftText()
-    {
-        enemiesLeftText.text = $"Enemies Left: {enemiesRemaining}";
-    }
-    
-
-    void UpdateRoundText()
-    {
-        roundCounter.text = $"Round {currentRound}";
-    }
-
+    [SerializeField] private GameObject _winScreen;
+    [SerializeField] private GameObject _winSound;
+    [SerializeField] private GameObject _bkrdMusic;
 
     private void Awake()
     {
@@ -67,7 +53,6 @@ public class GameManager : MonoBehaviour
         UpdateRoundText();
     }
 
-    // Called when an enemy is defeated
     private void OnEnable()
     {
         Enemy.OnEnemyKilled += OnEnemyKilled;
@@ -77,10 +62,11 @@ public class GameManager : MonoBehaviour
     {
         Enemy.OnEnemyKilled -= OnEnemyKilled;
     }
+
+    // Called when an enemy is defeated
     public void OnEnemyKilled(Enemy enemy)
     {
         enemiesRemaining--;
-
 
         // Update UI or other systems
         UpdateEnemiesLeftText();
@@ -110,4 +96,14 @@ public class GameManager : MonoBehaviour
         }
     }
     */
+
+    private void UpdateEnemiesLeftText()
+    {
+        enemiesLeftText.text = $"Enemies Left: {enemiesRemaining}";
+    }
+    
+    private void UpdateRoundText()
+    {
+        roundCounterText.text = $"Round {currentRound}";
+    }
 }

@@ -13,10 +13,11 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         // Move the enemy to the left
-        transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
-    }
+        //transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
 
-   
+        // Move the enemy down
+        transform.Translate(Vector2.down * moveSpeed * Time.deltaTime);
+    }
 
     public void UpdateHealth(float change)
     {
@@ -24,7 +25,7 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
-            Instantiate(_death, transform.position, transform.rotation);
+            //Instantiate(_death, transform.position, transform.rotation);
             Destroy(gameObject);
             OnEnemyKilled?.Invoke(this);
         }
@@ -34,10 +35,16 @@ public class Enemy : MonoBehaviour
     {
         // Check if the collided object is a bullet
         Bullet bullet = collision.GetComponent<Bullet>();
-        if (bullet != null && bullet.BulletColor == EnemyColor)
+        if (bullet != null)
         {
-            // If the bullet color matches the enemy color, destroy the enemy
-            UpdateHealth(-health); // Reduce health to 0
+            if (bullet.BulletColor == EnemyColor)
+            {
+                // If the bullet color matches the enemy color, destroy the enemy
+                UpdateHealth(-health); // Reduce health to 0
+            }
+
+            // Destroy the bullet
+            bullet.CollideAndDestroy();
         }
     }
 }
