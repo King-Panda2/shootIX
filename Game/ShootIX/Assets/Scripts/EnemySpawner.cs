@@ -7,8 +7,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab; // Prefab for the enemy
     [SerializeField] private float minimumSpawnTime; // Minimum time between spawns
     [SerializeField] private float maximumSpawnTime; // Maximum time between spawns
-    [SerializeField] private float minHealth = 3f;
-    [SerializeField] private float maxHealth = 10f;
+    [SerializeField] private int minHealth = 3;
+    [SerializeField] private int maxHealth = 10;
     private float spawnTime; // Time until the next spawn
     public List<GameObject> enemyQueue = new List<GameObject>();
     public Transform[] spawnPoints; // Array of spawn points
@@ -40,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
             Enemy enemy = enemyObj.GetComponent<Enemy>();
             if (enemy != null)
             {
-                float health = Random.Range(minHealth, maxHealth);
+                int health = Random.Range(minHealth, maxHealth);
                 Color enemyColor = allowedColors[Random.Range(0, allowedColors.Length)];
                 enemy.Initialize(health, enemyColor);
             }

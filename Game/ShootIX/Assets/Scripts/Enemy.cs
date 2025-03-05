@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     public static event Action<Enemy> OnEnemyKilled;
     private SpriteRenderer spriteRenderer;
 
-    [SerializeField] private float health;
+    [SerializeField] private int health;
     [SerializeField] private GameObject _death;
     [SerializeField] private float moveSpeed = 2f;
 
@@ -21,20 +21,7 @@ public class Enemy : MonoBehaviour
         // Get the SpriteRenderer component on the enemy (assumes it's attached to the same GameObject)
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-    private void Start()
-    {
-        
-        
-        // Create a new TextMeshPro object to display health
-        GameObject textObj = new GameObject("HealthText");
-        textObj.transform.SetParent(transform);
-        textObj.transform.localPosition = Vector3.zero + new Vector3(0, 0.5f, 0); // Position slightly above the enemy
-
-        healthText = textObj.AddComponent<TextMeshPro>();
-        healthText.fontSize = 1;
-        healthText.alignment = TextAlignmentOptions.Center;
-        healthText.text = health.ToString();
-    }
+    
 
     private void Update()
     {
@@ -42,7 +29,9 @@ public class Enemy : MonoBehaviour
         transform.Translate(Vector2.down * moveSpeed * Time.deltaTime);
     }
 
-    public void Initialize(float newHealth, Color newColor)
+    
+
+    public void Initialize(int newHealth, Color newColor)
     {
         health = newHealth;
         EnemyColor = newColor;
@@ -60,7 +49,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void UpdateHealth(float change)
+    public void UpdateHealth(int change)
     {
         health += change;
         UpdateHealthText();
