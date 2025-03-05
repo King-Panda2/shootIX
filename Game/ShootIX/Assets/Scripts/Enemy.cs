@@ -28,12 +28,6 @@ public class Enemy : MonoBehaviour
         transform.Translate(Vector2.down * moveSpeed * Time.deltaTime);
     }
 
-    void OnBecameInvisible()
-    {
-        // Game over when enemy passes by the player
-        GameManager.Instance.GameOver();
-    }
-
     public void Initialize(int newHealth, Color newColor)
     {
         health = newHealth;
@@ -68,19 +62,27 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Bullet bullet = collision.GetComponent<Bullet>();
-        if (bullet != null && bullet.GetIsShooting())
+        GameObject obj = collision.gameObject;
+        if (obj.CompareTag("Bullet"))
         {
-            if (bullet.BulletColor == EnemyColor)
+            Bullet bullet = obj.GetComponent<Bullet>();
+            if (bullet != null && bullet.GetIsShooting())
             {
-                UpdateHealth(-health); // Instantly destroy if bullet matches color
-            }
-            else
-            {
-                UpdateHealth(-1); // Take 1 damage from a different-colored bullet
-            }
+                if (bullet.BulletColor == EnemyColor)
+                {
+                    UpdateHealth(-health); // Instantly destroy if bullet matches color
+                }
+                else
+                {
+                    UpdateHealth(-1); // Take 1 damage from a different-colored bullet
+                }
 
-            bullet.CollideAndDestroy();
+                bullet.CollideAndDestroy();
+            }
+        }
+        else if (obj.CompareTag("FailTrigger"))
+        {
+            GameManager.Instance.GameOver();
         }
     }
 }
