@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     private EnemySpawner enemySpawner;
     [SerializeField] private TextMeshProUGUI enemiesLeftText;
     [SerializeField] private TextMeshProUGUI roundCounterText;
+    
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip sfxNextRound;
 
     void Awake()
     {
@@ -33,6 +36,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        
         enemySpawner = FindAnyObjectByType<EnemySpawner>();
         StartRound(); // Start the first round
     }
@@ -61,6 +66,16 @@ public class GameManager : MonoBehaviour
     private void OnDisable()
     {
         Enemy.OnEnemyKilled -= OnEnemyKilled;
+    }
+
+    private void UpdateEnemiesLeftText()
+    {
+        enemiesLeftText.text = $"Enemies Left: {enemiesRemaining}";
+    }
+    
+    private void UpdateRoundText()
+    {
+        roundCounterText.text = $"Round {currentRound}";
     }
 
     // Start a new round
@@ -98,6 +113,9 @@ public class GameManager : MonoBehaviour
     {
         currentRound++; // Increment the round number
 
+        // Play sound
+        GameManager.Instance.PlaySound(sfxNextRound);
+
         yield return new WaitForSeconds(timeBetweenRounds); // Wait between rounds
 
         StartRound();
@@ -121,13 +139,9 @@ public class GameManager : MonoBehaviour
     }
     */
 
-    private void UpdateEnemiesLeftText()
+    public void PlaySound(AudioClip clip)
     {
-        enemiesLeftText.text = $"Enemies Left: {enemiesRemaining}";
-    }
-    
-    private void UpdateRoundText()
-    {
-        roundCounterText.text = $"Round {currentRound}";
+        audioSource.clip = clip;
+        audioSource.Play();
     }
 }

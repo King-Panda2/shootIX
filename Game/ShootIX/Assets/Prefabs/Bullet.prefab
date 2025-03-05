@@ -160,3 +160,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 18
+  sfxShoot: {fileID: 8300000, guid: 0d66a3be36da78242939fe034db202c1, type: 3}

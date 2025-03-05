@@ -23,9 +23,15 @@ public class RotateCube : MonoBehaviour
 {
     [SerializeField] private Direction direction;
     [SerializeField] private RowColumn rowColumn;
+
+    [SerializeField] private AudioClip sfxRotate;
     
     private void OnMouseDown()
     {
+        // Play sound
+        GameManager.Instance.PlaySound(sfxRotate);
+        
+        // Get the MainFace's Face's current state
         Face currentFace = MainFace.Instance.GetFace();
 
         // Make a copy of the original face's colors
@@ -56,10 +62,12 @@ public class RotateCube : MonoBehaviour
                     break;
             }
             
+            // Apply nextFace colors to currentFace
             //Debug.Log("Current Face: " + currentFace + ", Next Face: " + nextFace);
             Rotate(currentFace, GetPiecesFromRowOrColumn(nextFace));
             currentFace = nextFace;
         }
+        // Apply initialColors to currentFace
         Rotate(currentFace, initialColors);
 
         // Update bullet weights based on the new MainFace state

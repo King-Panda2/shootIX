@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed;
     private Vector3 direction;
 
+    [SerializeField] private AudioClip sfxShoot;
+
     void Update()
     {
         // Check for movement
@@ -25,6 +27,9 @@ public class Bullet : MonoBehaviour
 
     public void Shoot()
     {
+        // Play sound
+        GameManager.Instance.PlaySound(sfxShoot);
+        
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         direction = (mousePos - transform.position).normalized;
         direction = new Vector3(direction.x, direction.y, 0.0f);
