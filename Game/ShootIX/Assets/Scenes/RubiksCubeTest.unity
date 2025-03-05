@@ -322,6 +322,8 @@ MonoBehaviour:
   enemiesLeftText: {fileID: 1510780840}
   roundCounterText: {fileID: 668273601}
   sfxNextRound: {fileID: 8300000, guid: 03e6da6e1e28d2546843ebac24955a0c, type: 3}
+  startRoundButton: {fileID: 0}
+  enemyPreviewContainer: {fileID: 0}
 --- !u!4 &601249319
 Transform:
   m_ObjectHideFlags: 0
@@ -927,9 +929,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 831eb52369e1f4e0983a5829ddb8d306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 3312461512355007254, guid: 99bded473c45c43beaadc4e7fb44e110, type: 3}
+  enemyPrefab: {fileID: 2760296400488930388, guid: 99bded473c45c43beaadc4e7fb44e110, type: 3}
   minimumSpawnTime: 1.5
   maximumSpawnTime: 3
+  minHealth: 3
+  maxHealth: 10
+  enemyQueue: []
   spawnPoints:
   - {fileID: 1715174345}
   - {fileID: 515690991}

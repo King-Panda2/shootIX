@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
 
     private AudioSource audioSource;
     [SerializeField] private AudioClip sfxNextRound;
-    [SerializeField] private Button startRoundButton;
     [SerializeField] private Transform enemyPreviewContainer;
     private List<GameObject> enemyPreviews = new List<GameObject>();
 
@@ -88,8 +87,6 @@ public class GameManager : MonoBehaviour
         enemySpawner.GenerateEnemyList(enemyCount); // Generate list of enemies
 
         DisplayEnemyPreviews(enemySpawner.enemyQueue); // Show previews in UI
-        startRoundButton.gameObject.SetActive(true); // Show "Start Round" button
-
 
         StartRound();
     }
@@ -111,10 +108,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // **Start the round when player clicks the button**
+    // Start the round
     public void StartRound()
     {
-        startRoundButton.gameObject.SetActive(false); // Hide button
         ClearEnemyPreviews(); // Remove previewed enemies
 
         enemiesRemaining = enemySpawner.enemyQueue.Count;

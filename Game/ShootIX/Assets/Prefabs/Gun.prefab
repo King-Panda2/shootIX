@@ -100,6 +100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c746ff7e0b3ce4f90e7c5533da27fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 3694254942527107398, guid: 4fae3182c97cb4ccca1825ea2350e16a, type: 3}
+  bulletPrefab: {fileID: 4834835620209037008, guid: 4fae3182c97cb4ccca1825ea2350e16a, type: 3}
   maxBullets: 3
   spawnOffset: 1.5
