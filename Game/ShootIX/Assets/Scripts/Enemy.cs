@@ -28,6 +28,12 @@ public class Enemy : MonoBehaviour
         transform.Translate(Vector2.down * moveSpeed * Time.deltaTime);
     }
 
+    void OnBecameInvisible()
+    {
+        // Game over when enemy passes by the player
+        GameManager.Instance.GameOver();
+    }
+
     public void Initialize(int newHealth, Color newColor)
     {
         health = newHealth;

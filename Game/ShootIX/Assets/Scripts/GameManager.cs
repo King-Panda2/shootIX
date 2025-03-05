@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1.0f;
+        
         audioSource = GetComponent<AudioSource>();
         enemySpawner = FindAnyObjectByType<EnemySpawner>();
 
@@ -148,6 +150,11 @@ public class GameManager : MonoBehaviour
         currentRound++;
         PlaySound(sfxNextRound);
         PrepareNextRound(); // Generate preview for next round
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0.0f;
     }
 
     public void PlaySound(AudioClip clip)

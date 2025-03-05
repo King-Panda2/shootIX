@@ -318,11 +318,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesPerRound: 5
-  timeBetweenRounds: 1
+  timeBetweenRounds: 5
   enemiesLeftText: {fileID: 1510780840}
   roundCounterText: {fileID: 668273601}
   sfxNextRound: {fileID: 8300000, guid: 03e6da6e1e28d2546843ebac24955a0c, type: 3}
-  startRoundButton: {fileID: 0}
   enemyPreviewContainer: {fileID: 0}
 --- !u!4 &601249319
 Transform:
