@@ -15,7 +15,6 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private TextMeshPro healthText; // Text display for health
 
-
     private void Awake()
     {
         // Get the SpriteRenderer component on the enemy (assumes it's attached to the same GameObject)
@@ -23,31 +22,24 @@ public class Enemy : MonoBehaviour
         
     }
     
-
     private void Update()
     {
         // Move the enemy down
         transform.Translate(Vector2.down * moveSpeed * Time.deltaTime);
     }
 
-    
-
     public void Initialize(int newHealth, Color newColor)
     {
         health = newHealth;
         EnemyColor = newColor;
-        UpdateHealthText();
-
-      
 
         // Apply the color to the sprite renderer
         if (spriteRenderer != null)
         {
-            
             spriteRenderer.color = newColor;
-            Debug.Log($"Setting enemy color to: {spriteRenderer.color}");
-
         }
+
+        UpdateHealthText();
     }
 
     public void UpdateHealth(int change)
