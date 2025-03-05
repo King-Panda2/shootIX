@@ -7,7 +7,10 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab; // Prefab for the enemy
     [SerializeField] private float minimumSpawnTime; // Minimum time between spawns
     [SerializeField] private float maximumSpawnTime; // Maximum time between spawns
+    [SerializeField] private float minHealth = 3f;
+    [SerializeField] private float maxHealth = 10f;
     private float spawnTime; // Time until the next spawn
+    public List<GameObject> enemyQueue = new List<GameObject>();
     public Transform[] spawnPoints; // Array of spawn points
 
     // Define the allowed colors for enemies
@@ -20,65 +23,43 @@ public class EnemySpawner : MonoBehaviour
         Color.green,
         new Color(1f, 0.92f, 0.016f) // Yellow (RGB: (1, 0.92, 0.016)
     };
-
-    private Dictionary<Transform, Color> spawnPointColors = new Dictionary<Transform, Color>(); // Map spawn points to specific colors
-
-    void Awake()
+    public void GenerateEnemyList(int totalEnemies)
     {
-        if (spawnPoints.Length != allowedColors.Length)
+        enemyQueue.Clear();
+
+        for (int i = 0; i < totalEnemies; i++)
         {
-            Debug.LogError("Number of spawn points must match number of colors!");
-            return;
-        }
-
-        AssignColorsToSpawnPoints(); // Assign colors once at the start
-        SetSpawnTime(); // Initialize the spawn time
-    }
-
-    // Assigns each spawn point a unique color
-    private void AssignColorsToSpawnPoints()
-    {
-        for (int i = 0; i < spawnPoints.Length; i++)
-        {
-            spawnPointColors[spawnPoints[i]] = allowedColors[i];
-        }
-    }
-
-    // Spawn enemies over time
-    public void SpawnEnemies(int count)
-    {
-        StartCoroutine(SpawnEnemiesOverTime(count)); // Start the coroutine
-    }
-
-    // Coroutine to spawn enemies at intervals
-    private IEnumerator SpawnEnemiesOverTime(int count)
-    {
-        while (count > 0)
-        {
-            yield return new WaitForSeconds(spawnTime); // Wait for the spawn time
-
+            
             // Choose a random spawn point
             Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
             // Instantiate the enemy at the spawn point
-            GameObject enemyObj = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+            GameObject enemyObj = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation); 
+            enemyObj.SetActive(false); // Hide until spawned
 
-            // Assign the spawn point's color to the enemy
-            if (enemyObj.TryGetComponent(out Enemy enemy))
+            Enemy enemy = enemyObj.GetComponent<Enemy>();
+            if (enemy != null)
             {
-                Color spawnColor = spawnPointColors[spawnPoint]; // Get assigned color
-                enemy.GetComponent<SpriteRenderer>().color = spawnColor;
-                enemy.EnemyColor = spawnColor; // Set the enemy's color property
+                float health = Random.Range(minHealth, maxHealth);
+                Color enemyColor = allowedColors[Random.Range(0, allowedColors.Length)];
+                enemy.Initialize(health, enemyColor);
             }
 
-            count--; // Decrease the remaining enemy count
-            SetSpawnTime(); // Set a new random spawn time for the next enemy
+            enemyQueue.Add(enemyObj);
+        }
+
+         // Return a copy for preview
+    }
+    public IEnumerator SpawnEnemies()
+    {
+        foreach (GameObject enemy in enemyQueue)
+        {
+            Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            enemy.transform.position = randomSpawnPoint.position;
+            enemy.SetActive(true);
+
+            float randomDelay = Random.Range(minimumSpawnTime, maximumSpawnTime);
+            yield return new WaitForSeconds(randomDelay);
         }
     }
-
-    // Set a random spawn time between minimum and maximum
-    private void SetSpawnTime()
-    {
-        spawnTime = Random.Range(minimumSpawnTime, maximumSpawnTime);
     }
-}

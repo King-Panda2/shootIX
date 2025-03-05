@@ -1,14 +1,14 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance; // Singleton for easy access
-    
+
     private int currentRound = 1; // Current round number
     [SerializeField] private int enemiesPerRound = 5; // Base number of enemies per round
     private int enemiesRemaining; // Number of enemies left in the current round
@@ -17,9 +17,13 @@ public class GameManager : MonoBehaviour
     private EnemySpawner enemySpawner;
     [SerializeField] private TextMeshProUGUI enemiesLeftText;
     [SerializeField] private TextMeshProUGUI roundCounterText;
-    
+
     private AudioSource audioSource;
     [SerializeField] private AudioClip sfxNextRound;
+    [SerializeField] private Button startRoundButton;
+    [SerializeField] private Transform enemyPreviewContainer;
+    private List<GameObject> enemyPreviews = new List<GameObject>();
+
 
     void Awake()
     {
@@ -37,21 +41,20 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        
         enemySpawner = FindAnyObjectByType<EnemySpawner>();
-        StartRound(); // Start the first round
+
+        PrepareNextRound(); // Generate enemy preview
     }
 
     void Update()
     {
-        // reset button
+        // Reset button
         if (Input.GetKey(KeyCode.R))
         {
-            string currentSceneName = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(currentSceneName);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        // quit button
+        // Quit button
         if (Input.GetKey("escape"))
         {
             Application.Quit();
@@ -72,72 +75,84 @@ public class GameManager : MonoBehaviour
     {
         enemiesLeftText.text = $"Enemies Left: {enemiesRemaining}";
     }
-    
+
     private void UpdateRoundText()
     {
         roundCounterText.text = $"Round {currentRound}";
     }
 
-    // Start a new round
-    public void StartRound()
+    // **Prepare the round but do not start it yet**
+    private void PrepareNextRound()
     {
-        // Calculate the number of enemies for this round
         int enemyCount = Mathf.CeilToInt(enemiesPerRound * currentRound);
-        enemiesRemaining = enemyCount;
+        enemySpawner.GenerateEnemyList(enemyCount); // Generate list of enemies
 
-        // Spawn enemies
-        enemySpawner.SpawnEnemies(enemyCount);
+        DisplayEnemyPreviews(enemySpawner.enemyQueue); // Show previews in UI
+        startRoundButton.gameObject.SetActive(true); // Show "Start Round" button
 
-        // Update UI or other systems
-        UpdateEnemiesLeftText();
-        UpdateRoundText();
-    }
-
-    // Called when an enemy is defeated
-    public void OnEnemyKilled(Enemy enemy)
-    {
-        enemiesRemaining--;
-
-        // Update UI or other systems
-        UpdateEnemiesLeftText();
-
-        // Check if all enemies are defeated
-        if (enemiesRemaining <= 0)
-        {
-           StartCoroutine(EndRound());
-        }
-    }
-
-    // End the current round and start the next one
-    private IEnumerator EndRound()
-    {
-        currentRound++; // Increment the round number
-
-        // Play sound
-        GameManager.Instance.PlaySound(sfxNextRound);
-
-        yield return new WaitForSeconds(timeBetweenRounds); // Wait between rounds
 
         StartRound();
     }
 
-    /*
-    private void EndRound()
+    // **Show the generated enemies in UI preview**
+    private void DisplayEnemyPreviews(List<GameObject> enemies)
     {
-        if (currentRound >= 6.0f)
+        foreach (GameObject enemy in enemyPreviews)
         {
-            Instantiate(_winScreen, _centerPoint.transform.position, _centerPoint.transform.rotation);
-            Instantiate(_winSound, _centerPoint.transform.position, _centerPoint.transform.rotation);
-            Destroy(_bkrdMusic);
+            Destroy(enemy); // Clear old previews
         }
-        else
+        enemyPreviews.Clear();
+
+        foreach (GameObject enemy in enemies)
         {
-            shop.SetActive(true);
-            Debug.Log("Round " + currentRound + " completed!");
-            currentRound++; // Increment the round number
+            GameObject preview = Instantiate(enemy, enemyPreviewContainer);
+            preview.SetActive(true); // Show in preview
+            enemyPreviews.Add(preview);
         }
     }
-    */
+
+    // **Start the round when player clicks the button**
+    public void StartRound()
+    {
+        startRoundButton.gameObject.SetActive(false); // Hide button
+        ClearEnemyPreviews(); // Remove previewed enemies
+
+        enemiesRemaining = enemySpawner.enemyQueue.Count;
+        UpdateEnemiesLeftText();
+        UpdateRoundText();
+
+        StartCoroutine(enemySpawner.SpawnEnemies()); // Start spawning
+    }
+
+    private void ClearEnemyPreviews()
+    {
+        foreach (GameObject preview in enemyPreviews)
+        {
+            Destroy(preview);
+        }
+        enemyPreviews.Clear();
+    }
+
+    // **Called when an enemy is defeated**
+    public void OnEnemyKilled(Enemy enemy)
+    {
+        enemiesRemaining--;
+        UpdateEnemiesLeftText();
+
+        if (enemiesRemaining <= 0)
+        {
+            StartCoroutine(EndRound());
+        }
+    }
+
+    // **End the round and prepare for the next one**
+    private IEnumerator EndRound()
+    {
+        yield return new WaitForSeconds(timeBetweenRounds);
+        currentRound++;
+        PlaySound(sfxNextRound);
+        PrepareNextRound(); // Generate preview for next round
+    }
 
     public void PlaySound(AudioClip clip)
     {
