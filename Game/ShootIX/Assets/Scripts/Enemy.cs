@@ -13,13 +13,14 @@ public class Enemy : MonoBehaviour
 
     public Color EnemyColor { get; set; }
 
-    private TextMeshPro healthText; // Text display for health
+    [SerializeField] private TextMeshPro healthText; // Text display for health
 
 
     private void Awake()
     {
         // Get the SpriteRenderer component on the enemy (assumes it's attached to the same GameObject)
         spriteRenderer = GetComponent<SpriteRenderer>();
+        
     }
     
 
