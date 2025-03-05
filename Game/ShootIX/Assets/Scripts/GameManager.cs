@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform enemyPreviewContainer;
     private List<GameObject> enemyPreviews = new List<GameObject>();
 
+    [SerializeField] private ScreenShake screenShake;
 
     void Awake()
     {
@@ -110,7 +111,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Start the round
+    // **Start the round**
     public void StartRound()
     {
         ClearEnemyPreviews(); // Remove previewed enemies
@@ -146,14 +147,18 @@ public class GameManager : MonoBehaviour
     // **End the round and prepare for the next one**
     private IEnumerator EndRound()
     {
-        yield return new WaitForSeconds(timeBetweenRounds);
         currentRound++;
         PlaySound(sfxNextRound);
+        
+        yield return new WaitForSeconds(timeBetweenRounds);
+
         PrepareNextRound(); // Generate preview for next round
     }
 
     public void GameOver()
     {
+        screenShake.StartShake();
+        
         Time.timeScale = 0.0f;
     }
 

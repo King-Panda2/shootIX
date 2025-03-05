@@ -178,7 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   _death: {fileID: 0}
-  moveSpeed: 1
+  moveSpeed: 0.75
   healthText: {fileID: 3329039205917600013}
 --- !u!1 &6077552116528606523
 GameObject:

@@ -23,13 +23,13 @@ public class EnemySpawner : MonoBehaviour
         Color.green,
         new Color(1f, 0.92f, 0.016f) // Yellow (RGB: (1, 0.92, 0.016)
     };
+
     public void GenerateEnemyList(int totalEnemies)
     {
         enemyQueue.Clear();
 
         for (int i = 0; i < totalEnemies; i++)
         {
-            
             // Choose a random spawn point
             Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
@@ -47,9 +47,8 @@ public class EnemySpawner : MonoBehaviour
 
             enemyQueue.Add(enemyObj);
         }
-
-         // Return a copy for preview
     }
+
     public IEnumerator SpawnEnemies()
     {
         foreach (GameObject enemy in enemyQueue)
@@ -62,4 +61,4 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(randomDelay);
         }
     }
-    }
+}

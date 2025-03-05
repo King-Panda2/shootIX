@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 88988555}
   - component: {fileID: 88988554}
   - component: {fileID: 88988557}
+  - component: {fileID: 88988558}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -256,6 +257,62 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &88988558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88988553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ac2cf105a2add41b96b1774edaacbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 3.8265226
+      outSlope: 3.8265226
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.20891301
+      value: 0.79941034
+      inSlope: 1.9201126
+      outSlope: 1.9201126
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.7405806
+      value: 0.80669564
+      inSlope: 0.37942255
+      outSlope: 0.37942255
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.74514234
+      outSlope: 0.74514234
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  duration: 4
+  sfxFail: {fileID: 8300000, guid: 9362d89dd13213b4a89afa47464b25fd, type: 3}
 --- !u!1 &515690990
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,11 +375,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesPerRound: 5
-  timeBetweenRounds: 5
+  timeBetweenRounds: 3
   enemiesLeftText: {fileID: 1510780840}
   roundCounterText: {fileID: 668273601}
   sfxNextRound: {fileID: 8300000, guid: 03e6da6e1e28d2546843ebac24955a0c, type: 3}
   enemyPreviewContainer: {fileID: 0}
+  screenShake: {fileID: 88988558}
 --- !u!4 &601249319
 Transform:
   m_ObjectHideFlags: 0
@@ -332,7 +390,7 @@ Transform:
   m_GameObject: {fileID: 601249317}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1563872, y: -0.138, z: 0.04589271}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -702,7 +760,7 @@ Transform:
   m_GameObject: {fileID: 1310159028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: -6.5, z: 0}
+  m_LocalPosition: {x: -4, y: -5.6, z: 0}
   m_LocalScale: {x: 10, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1009,8 +1067,8 @@ MonoBehaviour:
   enemyPrefab: {fileID: 2760296400488930388, guid: 99bded473c45c43beaadc4e7fb44e110, type: 3}
   minimumSpawnTime: 1.5
   maximumSpawnTime: 3
-  minHealth: 3
-  maxHealth: 10
+  minHealth: 5
+  maxHealth: 20
   enemyQueue: []
   spawnPoints:
   - {fileID: 1715174345}

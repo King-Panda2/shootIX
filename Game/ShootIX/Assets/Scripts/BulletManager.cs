@@ -29,12 +29,17 @@ public class BulletManager : MonoBehaviour
             // If the player's mouse is on the left side of the screen
             if (Input.mousePosition.x < Screen.width / 2.0f)
             {
-                if (activeBullet)
+                // If the player's mouse is above the activeBullet
+                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                if (mousePos.y > activeBullet.gameObject.transform.position.y)
                 {
-                    activeBullet.Shoot();
-                }
+                    if (activeBullet)
+                    {
+                        activeBullet.Shoot();
+                    }
 
-                OnBulletFired();
+                    OnBulletFired();
+                }
             }
         }
     }

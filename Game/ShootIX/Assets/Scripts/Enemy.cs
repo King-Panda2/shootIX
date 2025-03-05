@@ -8,7 +8,6 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     [SerializeField] private int health;
-    [SerializeField] private GameObject _death;
     [SerializeField] private float moveSpeed = 2f;
 
     public Color EnemyColor { get; set; }
@@ -19,7 +18,6 @@ public class Enemy : MonoBehaviour
     {
         // Get the SpriteRenderer component on the enemy (assumes it's attached to the same GameObject)
         spriteRenderer = GetComponent<SpriteRenderer>();
-        
     }
     
     private void Update()
